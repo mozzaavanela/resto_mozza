@@ -13,7 +13,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return "halaman index";
+        $cate=Category::latest()->get();
+        return view ('category.index', compact('cate'));
     }
 
     /**

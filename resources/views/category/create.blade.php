@@ -15,7 +15,6 @@
                 <div class="card-header">Manage Food Category</div>
 
                 <div class="card-body">
-                    ini category
                     <div class="form-group">
                         <label for="name">name</label>
                         <input type="text" name="name" id="name" class="form-control">
