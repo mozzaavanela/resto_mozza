@@ -36,7 +36,13 @@
                                 <a href="{{route('category.edit',[$cate->id])}}"><button class="btn btn-outline-success">edit </button></a>
                             </td>
                             <td>
-                                <a href="{{route('category.edit',[$cate->id])}}"><button class="btn btn-outline-danger">delete </button></a>
+                                <a href="">
+                                <form action="{{route('category.destroy',[$cate->id])}}" method="post">
+                                    @csrf
+                                    {{method_field('DELETE')}}
+                                    <button class="btn btn-outline-danger">delete </button>
+                                </form>
+                            </a>
                             </td>
                         </tr>
                         @endforeach                            
