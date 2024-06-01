@@ -49,9 +49,11 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        $cate= Category::find($id);
+        return view ('category.edit', compact('cate'));
     }
 
     /**
@@ -60,6 +62,10 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $cate = Category::find($id);
+        $cate->name = $request->get('name');
+        $cate->save();
+        return redirect()->route('category.index')->with('message', 'kategory berhasil di update');
     }
 
     /**
