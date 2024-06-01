@@ -3,7 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-
+@if (Session::has('message'))
+<div class="alert alert-succes">
+    {{Session::get('message')}}
+</div>
+@endif
         <form action="{{route ('category.store')}}" method="post">
             @csrf
             <div class="col-md-8">
