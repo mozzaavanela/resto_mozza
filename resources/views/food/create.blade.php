@@ -8,7 +8,7 @@
     {{Session::get('message')}}
 </div>
 @endif
-        <form action="{{route ('food.store')}}" method="post">
+        <form action="{{route ('food.store')}}" method="post" enctype="multipart/form-data" >
             @csrf
             <div class="col-md-8">
             <div class="card">
@@ -62,7 +62,7 @@
 
                             <div class="form-group">
                                 <label for="image">Image</label>
-                                <input type="text" name="image" class="form-control @error('image') is-invalid @enderror">
+                                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
                                 @error('image')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{$message}}</strong>

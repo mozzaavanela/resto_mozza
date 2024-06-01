@@ -35,9 +35,30 @@ class FoodController extends Controller
             'description' => 'required',
             'price'=>'required | integer',
             'category' => 'required',
-            'image'=>'required|mimes:png,jpeg,jpg'
+            'image'=>'required'
+        ]);
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/image');
+            $image->move($destinationPath, $name);
+        
+            Food::create([
+                'name' => $request->get('name'),
+                'description' => $request->get('description'),
+                'price' => $request->get('price'),
+                'category_id' => $request->get('category'),
+                'image' => $name
             ]);
-    }
+        
+            return redirect()->back()->with('message', 'Food berhasil ditambahkan');
+        } else {
+            return redirect()->back()->with('error', 'Tidak ada file yang diunggah');
+        }
+        
+            }
+    
 
     /**
      * Display the specified resource.
