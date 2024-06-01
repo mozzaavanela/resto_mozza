@@ -39,11 +39,11 @@
                             <td>{{$food->price}}</td>
                             <td>{{$food->category_id}}</td>
                             <td>
-                                <a href="{{route('category.edit',[$food->id])}}"><button class="btn btn-outline-success">edit </button></a>
+                                <a href="{{route('food.edit',[$food->id])}}"><button class="btn btn-outline-success">edit </button></a>
                             </td>
                             <td>
                                 <a href="">
-                                <form action="{{route('category.destroy',[$food->id])}}" method="post">
+                                <form action="{{route('food.destroy',[$food->id])}}" method="post">
                                     @csrf
                                     {{method_field('DELETE')}}
                                     <button class="btn btn-outline-danger">delete </button>
