@@ -1,0 +1,49 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+@if (Session::has('message'))
+<div class="alert alert-succes">
+    {{Session::get('message')}}
+</div>
+@endif
+        <form action="{{route ('category.store')}}" method="post">
+            @csrf
+            <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Add new food</div>
+
+                <div class="card-body">
+                    food
+                    <div class="form-group">
+                        <label for="name">name</label>
+                        <input type="text" name="name" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">description</label>
+                        <input type="text" name="description" id="description" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">price</label>
+                        <input type="text" name="price" id="price" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">category</label>
+                        <input type="text" name="category" id="category" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">image</label>
+                        <input type="text" name="image" id="image" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-outline-primary">submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        
+    </div>
+</div>
+@endsection
