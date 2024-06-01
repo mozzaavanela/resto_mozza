@@ -20,24 +20,30 @@
                    <table class="table">
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col">no</th>
-                            <th scope="col">name</th>
-                            <th scope="col">edit</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
-                        </tr>
+                            </tr>
                     </thead>
                     <tbody>
-                        @if (count($cate)>0)
-                        @foreach($cate as $key=>$cate)
+                        @if (count($foods)>0)
+                        @foreach($foods as $key=>$food)
                             <tr>
-                            <th scope="row">{{$key+1}}</th>
-                            <td>{{$cate->name}}</td>
+                            <td> <img src="{{asset('image')}}/{{$food->image}}" width="100"></td>
+                            <td>{{$food->name}}</td>
+                            <td>{{$food->description}}</td>
+                            <td>{{$food->price}}</td>
+                            <td>{{$food->category_id}}</td>
                             <td>
-                                <a href="{{route('category.edit',[$cate->id])}}"><button class="btn btn-outline-success">edit </button></a>
+                                <a href="{{route('category.edit',[$food->id])}}"><button class="btn btn-outline-success">edit </button></a>
                             </td>
                             <td>
                                 <a href="">
-                                <form action="{{route('category.destroy',[$cate->id])}}" method="post">
+                                <form action="{{route('category.destroy',[$food->id])}}" method="post">
                                     @csrf
                                     {{method_field('DELETE')}}
                                     <button class="btn btn-outline-danger">delete </button>
