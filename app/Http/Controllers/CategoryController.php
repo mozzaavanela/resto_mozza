@@ -32,6 +32,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, ['name'=>'required|min:3']);
         Category::create([
             'name'=>$request->get('name')
         ]);
@@ -62,6 +63,7 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $this->validate($request, ['name'=>'required|min:3']);
         $cate = Category::find($id);
         $cate->name = $request->get('name');
         $cate->save();
