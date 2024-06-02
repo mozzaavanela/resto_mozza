@@ -11,14 +11,13 @@
                 
             @endif
             <div class="card">
-                <div class="card-header">All Category
-                <span class="float-right">
-                    <a href="{{route('food.create')}}">
-                    <button class="btn btn-outline-secondary">Add
-                    Food</button>
-                    </a>
+                <div class="card-header">All Food
+                        <span class="float-right">
+                            <a href="{{ route('food.create') }}">
+                                <button class="btn btn-outline-secondary">Add Food</button>
+                            </a>
+                        </span>
                 </div>
-                </span>
                 <div class="card-body">
                    {{-- @foreach ($cate as $item)
                        <p>{{$item->name}}</p>
