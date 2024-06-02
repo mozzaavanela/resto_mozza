@@ -128,7 +128,7 @@ class FoodController extends Controller
     {
         //
         $foods=Food::find($id);
-        $imagePath = public_path('/image/') . $food->image;
+        $imagePath = public_path('/image/') . $foods->image;
         if (file_exists($imagePath)) {
             unlink($imagePath);
         }

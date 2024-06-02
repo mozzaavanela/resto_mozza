@@ -20,6 +20,6 @@ Route::get('/', function () {
 
 route::resource('/category', CategoryController::class)->middleware('auth');
 route::resource('/food', FoodController::class)->middleware('auth');
-Auth::routes(['register'=>false]);
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
