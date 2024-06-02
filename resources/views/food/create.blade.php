@@ -26,8 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea name="description" class="form-control @error('description') is-invalid @enderror">
-                        </textarea>
+                        <textarea name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
                         @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{$message}}</strong>

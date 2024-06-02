@@ -53,11 +53,12 @@
                         </tr>
                         @endforeach                            
                         @else
-                            <td>tidak ada kategory yng dapat di tampilkan .</td>
+                            <td>tidak ada food yng dapat di tampilkan .</td>
                         @endif
                         
                     </tbody>
                    </table>
+                   {{$foods->links()}}
                 </div>
             </div>
         </div>

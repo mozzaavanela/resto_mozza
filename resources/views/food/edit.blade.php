@@ -8,7 +8,7 @@
     {{Session::get('message')}}
 </div>
 @endif
-        <form action="{{route ('food.update', [$foods->id])}}" method="post">
+        <form action="{{route ('food.update', [$foods->id])}}" method="post" enctype="multipart/form-data">
             @csrf
             {{method_field('PUT')}}
             <div class="col-md-8">

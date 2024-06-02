@@ -14,7 +14,7 @@ class FoodController extends Controller
     public function index()
     {
         //
-        $foods = Food::latest()->get();
+        $foods = Food::latest()->paginate(1);
         return view('food.index', compact('foods'));
     }
 
@@ -85,32 +85,41 @@ class FoodController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'price'=>'required | integer',
-            'category' => 'required',
-            'image'=>'required'
-            ]);
+{
+    //
+    $this->validate($request, [
+        'name' => 'required',
+        'description' => 'required',
+        'price'=>'required | integer',
+        'category' => 'required',
+        'image'=>'required'
+    ]);
 
-            $food = Food::find($id);
-            $name = $food->image;
-            if($request->hasFile('image')){
-            $image = $request->file('image');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/image');
-            $image->move($destinationPath, $name);
-            }
-            $food->name = $request->get('name');
-            $food->description = $request->get('description');
-            $food->price = $request->get('price');
-            $food->category_id = $request->get('category');
-            $food->image = $name;
-            $food->save();
-            return redirect()->route('food.index')->with('message', 'Food information updated');
+    $food = Food::find($id);
+    
+    // Hapus gambar sebelumnya
+    $oldImage = $food->image;
+    $destinationPath = public_path('/image');
+    if ($oldImage && file_exists($destinationPath . '/' . $oldImage)) {
+        unlink($destinationPath . '/' . $oldImage);
     }
+
+    $name = $food->image;
+    if($request->hasFile('image')){
+        $image = $request->file('image');
+        $name = time().'.'.$image->getClientOriginalExtension();
+        $image->move($destinationPath, $name);
+    }
+
+    $food->name = $request->get('name');
+    $food->description = $request->get('description');
+    $food->price = $request->get('price');
+    $food->category_id = $request->get('category');
+    $food->image = $name;
+    $food->save();
+    
+    return redirect()->route('food.index')->with('message', 'Informasi makanan diperbarui');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -118,5 +127,12 @@ class FoodController extends Controller
     public function destroy(string $id)
     {
         //
+        $foods=Food::find($id);
+        $imagePath = public_path('/image/') . $food->image;
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+        $foods->delete();
+        return redirect()->route('food.index')->with('message', 'food berhasil di hapus');
     }
 }
